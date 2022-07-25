@@ -4,25 +4,28 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Label;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.Random;
+import java.util.stream.Collectors;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.blaze.enums.Rank;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class BetsView extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtNumber;
 
 	/**
 	 * Launch the application.
@@ -44,7 +47,7 @@ public class BetsView extends JFrame {
 	 * Create the frame.
 	 */
 	public BetsView() {
-		 Player player = new Player(1, "Eduardo", 2000.00, Rank.PRO, LocalDate.of(2022, 07, 24));
+		Player player = new Player(1, "Eduardo", 2000.00, Rank.PRO, LocalDate.of(2022, 07, 24));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 507, 364);
@@ -72,7 +75,9 @@ public class BetsView extends JFrame {
 				dv.setVisible(true);
 				dv.isVisible();
 				dv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 			}
+
 		});
 		menuBar.add(menuItemDeposit);
 
@@ -126,6 +131,25 @@ public class BetsView extends JFrame {
 		panel.setBounds(10, 36, 471, 250);
 		contentPane.add(panel);
 		panel.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Enter a number");
+		lblNewLabel_1.setBounds(68, 101, 105, 14);
+		panel.add(lblNewLabel_1);
+
+		txtNumber = new JTextField();
+		txtNumber.setBounds(183, 98, 86, 20);
+		panel.add(txtNumber);
+		txtNumber.setColumns(10);
+
+		// error
+		Random random = new Random();
+		String number = txtNumber.getText();
+		int selection = random.nextInt(Integer.parseInt(number), Integer.parseInt(number));
+		System.out.println(selection);
+
+		JButton btnBet = new JButton("Bet");
+		btnBet.setBounds(319, 97, 89, 23);
+		panel.add(btnBet);
 
 	}
 }
