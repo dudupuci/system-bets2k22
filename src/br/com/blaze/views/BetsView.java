@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,7 +44,7 @@ public class BetsView extends JFrame {
 	 * Create the frame.
 	 */
 	public BetsView() {
-		Player player = new Player(1, "Eduardo", 2000.00, Rank.PRO);
+		 Player player = new Player(1, "Eduardo", 2000.00, Rank.PRO, LocalDate.of(2022, 07, 24));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 507, 364);

@@ -94,12 +94,7 @@ public class LoginView extends JFrame {
 					loginResponse.setForeground(Color.GREEN);
 					txtUsername.setText("");
 					txtPassword.setText("");
-					try {
-						Thread.sleep(10000000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					
 
 					BetsView bets = new BetsView();
 					bets.setVisible(true);

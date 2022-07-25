@@ -1,5 +1,7 @@
 package br.com.blaze.views;
 
+import java.time.LocalDate;
+
 import br.com.blaze.enums.Rank;
 
 public class Player {
@@ -8,16 +10,18 @@ public class Player {
 	private String name;
 	private Double balance;
 	private Rank rankLevel;
+	private LocalDate dateRegister;
 
 	public Player() {
 
 	}
 
-	public Player(Integer id, String name, Double balance, Rank rankLevel) {
+	public Player(Integer id, String name, Double balance, Rank rankLevel, LocalDate dateRegister) {
 		this.id = id;
 		this.name = name;
 		this.balance = balance;
 		this.rankLevel = rankLevel;
+		this.dateRegister = dateRegister;
 	}
 
 	public Integer getId() {
@@ -32,7 +36,10 @@ public class Player {
 		this.name = name;
 	}
 
-	
+	public LocalDate getDateRegister() {
+		return dateRegister;
+	}
+
 	public Double getBalance() {
 		return balance;
 	}
