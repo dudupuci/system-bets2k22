@@ -6,9 +6,13 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.LocalDate;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,14 +22,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.com.blaze.enums.Rank;
 
 public class BetsView extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	Scanner read = new Scanner(System.in);
 	private JPanel contentPane;
 	private JTextField txtNumber;
+	private JLabel question;
 
 	/**
 	 * Launch the application.
@@ -132,24 +140,83 @@ public class BetsView extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("Enter a number");
-		lblNewLabel_1.setBounds(68, 101, 105, 14);
-		panel.add(lblNewLabel_1);
+		JLabel lblQuestion = new JLabel("Question #");
+		lblQuestion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblQuestion.setBounds(138, 11, 177, 23);
+		panel.add(lblQuestion);
 
 		txtNumber = new JTextField();
-		txtNumber.setBounds(183, 98, 86, 20);
+		txtNumber.setBounds(176, 91, 102, 35);
 		panel.add(txtNumber);
 		txtNumber.setColumns(10);
 
-		// error
-		Random random = new Random();
-		String number = txtNumber.getText();
-		int selection = random.nextInt(Integer.parseInt(number), Integer.parseInt(number));
-		System.out.println(selection);
-
-		JButton btnBet = new JButton("Bet");
-		btnBet.setBounds(319, 97, 89, 23);
+		JButton btnBet = new JButton("Reply");
+		btnBet.setBounds(176, 137, 102, 23);
 		panel.add(btnBet);
 
+		question = new JLabel("");
+		question.setHorizontalAlignment(SwingConstants.CENTER);
+		question.setBounds(176, 45, 102, 14);
+		panel.add(question);
+
+		JLabel lblResultQuestion = new JLabel("");
+		lblResultQuestion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblResultQuestion.setBounds(176, 183, 102, 14);
+		panel.add(lblResultQuestion);
+		lblQuestion.setText("15+8");
+		btnBet.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				lblQuestion.setText("15+8");
+				String responseString = txtNumber.getText();
+				int responseFormated = Integer.parseInt(responseString);
+				if (responseFormated == 23) {
+					System.out.println("certo");	
+				} else {
+					
+				}
+				
+				lblQuestion.setText("19+47");
+				String responseString2 = txtNumber.getText();
+				int responseFormated2 = Integer.parseInt(responseString2);
+				if (responseFormated2 == 66) {
+					System.out.println("certo");
+				} else {
+					
+				}
+				lblQuestion.setText("105*11");
+				String responseString3 = txtNumber.getText();
+				int responseFormated3 = Integer.parseInt(responseString3);
+			
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 	}
+
 }
