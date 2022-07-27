@@ -6,12 +6,10 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -140,7 +138,7 @@ public class BetsView extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblQuestion = new JLabel("Question #");
+		JLabel lblQuestion = new JLabel("Bet on a number!");
 		lblQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQuestion.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblQuestion.setBounds(138, 11, 177, 23);
@@ -151,7 +149,7 @@ public class BetsView extends JFrame {
 		panel.add(txtNumber);
 		txtNumber.setColumns(10);
 
-		JButton btnBet = new JButton("Reply");
+		JButton btnBet = new JButton("Bet");
 		btnBet.setBounds(176, 137, 102, 23);
 		panel.add(btnBet);
 
@@ -162,35 +160,14 @@ public class BetsView extends JFrame {
 
 		JLabel lblResultQuestion = new JLabel("");
 		lblResultQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblResultQuestion.setBounds(176, 183, 102, 14);
+		lblResultQuestion.setBounds(82, 183, 298, 14);
 		panel.add(lblResultQuestion);
-		lblQuestion.setText("15+8");
+
 		btnBet.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				lblQuestion.setText("15+8");
-				String responseString = txtNumber.getText();
-				int responseFormated = Integer.parseInt(responseString);
-				if (responseFormated == 23) {
-					System.out.println("certo");	
-				} else {
-					
-				}
-				
-				lblQuestion.setText("19+47");
-				String responseString2 = txtNumber.getText();
-				int responseFormated2 = Integer.parseInt(responseString2);
-				if (responseFormated2 == 66) {
-					System.out.println("certo");
-				} else {
-					
-				}
-				lblQuestion.setText("105*11");
-				String responseString3 = txtNumber.getText();
-				int responseFormated3 = Integer.parseInt(responseString3);
-			
-				
+
 			}
 
 			@Override
@@ -213,10 +190,30 @@ public class BetsView extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+				Random random = new Random();
+				String txt = txtNumber.getText();
+				int number = Integer.parseInt(txt);
+
+				int generate = random.nextInt(number - 10, number + 11);
+				try {
+					if (generate == number) {
+						lblResultQuestion.setText("System rolled " + generate + " YOU WIN! +$50USD");
+						lblResultQuestion.setForeground(Color.GREEN);
+						Thread.sleep(250);
+
+					} else {
+						lblResultQuestion.setText("System rolled " + generate + " YOU LOSE! -$2USD");
+						lblResultQuestion.setForeground(Color.RED);
+						Thread.sleep(250);
+
+					}
+				} catch (InterruptedException err) {
+					err.printStackTrace();
+				}
 
 			}
-		});
-	}
 
+		});
+
+	}
 }
